@@ -21,12 +21,22 @@ LOG
 The local variable "log" holds the log of a rotation cycle. It's elements are
 documented below. Every element should have the same number of lines.
 
+t is the time since start of experiment
+x,y,z are axes
+
 log.
-    field_set               Value the magnetic field should have, Tesla, [x y z]
-    field_act               Value it actually has (measured), Tesla
-    current_set             Value the current output should have, Ampere
-    current_act             Value it actually has (measured), Ampere
+    field_exp               Value the magnetic field should have, s, Tesla, [t x y z]
+    field_mea               Value it actually has (measured), s, Tesla
+    current_set             Value the current output should have, s, Ampere
+    current_act             Value it actually has (measured), s, Ampere
                             Note that the sign (polarity) cannot be measured
                             - the polarity switch relays are assumed to be
                             in the correct position.
-    runtime                 Time since the start of the cycle, seconds
+    field_set_antiparallel  ?
+    earth_field             Measured field at start of experiment?
+    swtime                  Time taken to set the field to the computed value (seconds)
+    date                    Date (after setting the field values. Time before
+                            is to_seconds(date) - swtime [y m d h m s]
+    date_start              Time at experiment start
+
+

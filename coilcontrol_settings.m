@@ -3,8 +3,8 @@ function [ s ] = coilcontrol_settings( )
 % moving to a different computer
 
 % What COM port number are the power supplies connected to
-s.psucom.x=4;
-s.psucom.y=5;
+s.psucom.x=8;
+s.psucom.y=7;
 s.psucom.z=6;
 
 % What COM port number is the Bartington Mag03DAM connected to

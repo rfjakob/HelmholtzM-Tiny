@@ -252,6 +252,8 @@ end
 global log
 enable_gui(handles,'off');
 log=start_360_cycle();
+logfilename=save_log(log);
+disp(['Wrote ' logfilename]);
 enable_gui(handles,'on');
 config.abort=0;
 

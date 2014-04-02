@@ -13,6 +13,7 @@ log.current_measured=[];
 log.earth_field=config.earth_field;
 log.swtime=[];
 log.antipar=[];
+log.date=[];
 
 points=config.points_todo;
 l=length(points);
@@ -34,7 +35,10 @@ set_flux_density([0 0 0]);
 set_antiparallel(0);
 
 fprintf('Stepping through %d points:',l);
+
 t0=clock;
+log.date_start=t0;
+
 for k=1:l
     fprintf(' %d',k);
     if config.abort==1
@@ -49,6 +53,7 @@ for k=1:l
     [field_expected, field_set_antiparallel]=points_to_expected_field(points(k,:));
     
     rt1=etime(clock,t0);
+    log.date(end+1,:)=clock;
     log.antipar(end+1,:)=[rt1  points(k,4)];
     log.swtime(end+1,:)=[rt1 etime(clock,tsw)];
     log.field_expected(end+1,:)=[rt1 field_expected];

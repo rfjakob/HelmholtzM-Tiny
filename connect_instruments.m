@@ -22,7 +22,7 @@ if config.dryrun==1
 else
     % http://www.mathworks.com/matlabcentral/answers/259-warnings-returned-by-loadlibrary
     warning off MATLAB:loadlibrary:TypeNotFound
-    [notfound,warnings]=loadlibrary('cbw32.dll','cbw32.h');
+    [~,warnings]=loadlibrary('cbw32.dll','cbw.h');
     % int cbDConfigPort(int BoardNum, int PortNum, int Direction)
     r=calllib('cbw32','cbDConfigPort',BoardNum,PortNum,1);
 end
