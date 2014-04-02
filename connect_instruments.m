@@ -17,18 +17,17 @@ set_psu_output([1 2 3], 1);
 
 [BoardNum, PortNum]=redlab_conf();
 
-if config.dryrun==1
-    r=0;
-else
+if config.dryrun==0
     % http://www.mathworks.com/matlabcentral/answers/259-warnings-returned-by-loadlibrary
     warning off MATLAB:loadlibrary:TypeNotFound
     [~,warnings]=loadlibrary('cbw32.dll','cbw.h');
     % int cbDConfigPort(int BoardNum, int PortNum, int Direction)
     r=calllib('cbw32','cbDConfigPort',BoardNum,PortNum,1);
-end
-
-if r~=0
-    error('Could not initialize redlab relay switching board: Error %d',r)
+    if r~=0
+        error('Could not initialize redlab relay switching board: Error %d',r)
+    end
+    % Make sure values are at default
+    set_redlab_bit('all', 0);
 end
 
 connect_mag03dam();

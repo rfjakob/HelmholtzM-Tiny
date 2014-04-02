@@ -61,6 +61,11 @@ guidata(hObject, handles);
 % uiwait(handles.figure1);
 
 % Coilcontrol: Startup
+
+% Clear the persistent variable in the function set_current.
+% It may be still set from before a former run - this messes things up.
+clear set_current
+
 global config;
 
 config.dryrun=0;

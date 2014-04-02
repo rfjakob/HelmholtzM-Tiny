@@ -13,6 +13,8 @@ switch bitname
         BitNum=11;
     case 'ZPOL'
         BitNum=13;
+    case 'all'
+        BitNum=[8 9 10 11 12 13];
     otherwise
         error('BUG: Invalid bitname "%d"',bitname)
 end
