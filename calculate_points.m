@@ -5,22 +5,8 @@ global config;
 
 points=[]; % Format: [x y z antiparallel], x y z in Tesla, antiparallel 0 or 1
 
-if config.groupap==0
-    for a=[1 2 3] % loop trough axes
-
-        if config.axes_enabled(a)==0
-                % If the axis is disabled skip it
-                continue;
-        end
-        n=config.rotation_axes(a,:);
-
-        for g=[1 2 3] % loop trough anti->normal->anti
-            nextblock=calculate_points_oneblock(n, g);
-            points=[points; nextblock];
-        end
-    end
-else
-    for g=[1 2 3] % loop trough anti->normal->anti
+for r=1:config.repeat
+    if config.groupap==0
         for a=[1 2 3] % loop trough axes
 
             if config.axes_enabled(a)==0
@@ -29,8 +15,24 @@ else
             end
             n=config.rotation_axes(a,:);
 
-            nextblock=calculate_points_oneblock(n, g);
-            points=[points; nextblock];
+            for g=[1 2 3] % loop trough anti->normal->anti
+                nextblock=calculate_points_oneblock(n, g);
+                points=[points; nextblock];
+            end
+        end
+    else
+        for g=[1 2 3] % loop trough anti->normal->anti
+            for a=[1 2 3] % loop trough axes
+
+                if config.axes_enabled(a)==0
+                        % If the axis is disabled skip it
+                        continue;
+                end
+                n=config.rotation_axes(a,:);
+
+                nextblock=calculate_points_oneblock(n, g);
+                points=[points; nextblock];
+            end
         end
     end
 end

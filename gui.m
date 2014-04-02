@@ -22,7 +22,7 @@ function varargout = gui(varargin)
 
 % Edit the above text to modify the response to help gui
 
-% Last Modified by GUIDE v2.5 02-Apr-2014 18:45:31
+% Last Modified by GUIDE v2.5 02-Apr-2014 19:22:56
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -530,3 +530,35 @@ v=get(hObject,'Value');
 global config
 config.groupap=v;
 calculate_points();
+
+
+
+function edit_repeat_Callback(hObject, eventdata, handles)
+% hObject    handle to edit_repeat (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of edit_repeat as text
+%        str2double(get(hObject,'String')) returns contents of edit_repeat as a double
+global config;
+n=validate_uint(hObject);
+if n<=0
+    set(hObject,'BackgroundColor','red');
+else
+    set(hObject,'BackgroundColor','white');
+    config.repeat=n;
+    calculate_points();
+end
+calculate_points();
+
+% --- Executes during object creation, after setting all properties.
+function edit_repeat_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to edit_repeat (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+set(hObject,'BackgroundColor','white');
+global config;
+config.repeat=validate_uint(hObject);
