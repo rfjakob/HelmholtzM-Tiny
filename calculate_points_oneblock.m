@@ -1,6 +1,7 @@
 function [ points ] = calculate_points_oneblock(n, g)
 %CALCULATE_POINTS_ONEBLOCK Summary of this function goes here
-%   Detailed explanation goes here
+%   n ... axis vector
+%   g ... 1=normal, 2=anti, 3=normal
 
 global config;
 

@@ -22,7 +22,7 @@ function varargout = gui(varargin)
 
 % Edit the above text to modify the response to help gui
 
-% Last Modified by GUIDE v2.5 03-Sep-2012 13:50:25
+% Last Modified by GUIDE v2.5 02-Apr-2014 18:45:31
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -70,6 +70,7 @@ config.abort=0;
 config.earth_field=[0 0 0];
 config.mode=0;
 config.axes_enabled=[1 1 1];
+config.groupap=0;
 connect_instruments();                  % Connect PSUs
 calculate_points();                     % Calculate default points to do
 rotate3d(config.guihandles.axes_3d,'on');  % Enable mouse rotate
@@ -516,3 +517,16 @@ function checkbox_measure_field_during_exp_CreateFcn(hObject, eventdata, handles
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 checkbox_measure_field_during_exp_Callback(hObject, eventdata, handles)
+
+
+% --- Executes on button press in checkbox_groupap.
+function checkbox_groupap_Callback(hObject, eventdata, handles)
+% hObject    handle to checkbox_groupap (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of checkbox_groupap
+v=get(hObject,'Value');
+global config
+config.groupap=v;
+calculate_points();
